@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ChessSocket - xadrez multiplayer em tempo real com WebSockets"
+    />
+    <title>ChessSocket</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css?v=3" />
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="brand-bar">
+        <a class="brand" href="/" aria-label="ChessSocket - início">
+          <span class="brand-mark">♞</span>
+          <span>Chess<span>Socket</span></span>
+        </a>
+        <div class="connection idle" id="connection-status">
+          <span class="connection-dot"></span>
+          <span>Pronto para jogar</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero" id="home-view">
+          <div class="hero-copy">
+            <p class="eyebrow">XADREZ MULTIPLAYER EM TEMPO REAL</p>
+            <h1>Uma partida.<br /><em>Dois navegadores.</em></h1>
+            <p class="hero-text">
+              Crie uma sala, compartilhe o código e jogue. Cada movimento é
+              validado pelo servidor Python e sincronizado por WebSocket.
+            </p>
+            <div class="feature-row" aria-label="Características">
+              <span>⚡ Tempo real</span>
+              <span>♜ Regras completas</span>
+              <span>🔒 Servidor autoritativo</span>
+            </div>
+          </div>
+
+          <div class="lobby-card">
+            <div class="card-heading">
+              <span class="mini-piece">♟</span>
+              <div>
+                <p class="card-kicker">NOVA PARTIDA</p>
+                <h2>Entre no tabuleiro</h2>
+              </div>
+            </div>
+
+            <label for="player-name">Seu nome</label>
+            <input
+              id="player-name"
+              type="text"
+              maxlength="24"
+              placeholder="Como devemos chamar você?"
+              autocomplete="nickname"
+            />
+
+            <button class="primary-button" id="create-room" type="button">
+              Criar uma sala
+            </button>
+
+            <div class="divider"><span>ou entre em uma existente</span></div>
+
+            <label for="room-code">Código da sala</label>
+            <div class="join-row">
+              <input
+                id="room-code"
+                class="code-input"
+                type="text"
+                maxlength="5"
+                placeholder="ABCDE"
+                autocomplete="off"
+              />
+              <button class="secondary-button" id="join-room" type="button">
+                Entrar
+              </button>
+            </div>
+            <p class="form-message" id="lobby-message" role="alert"></p>
+          </div>
+        </section>
+
+        <section class="game-view hidden" id="game-view" aria-live="polite">
+          <div class="game-topbar">
+            <div>
+              <p class="eyebrow">SALA</p>
+              <button class="room-code-button" id="copy-room-code" type="button">
+                <span id="current-room-code">-----</span>
+                <small>copiar</small>
+              </button>
+            </div>
+            <div class="game-status" id="game-status">Aguardando adversário...</div>
+            <button class="ghost-button" id="new-game" type="button">Nova sala</button>
+          </div>
+
+          <div class="game-layout">
+            <aside class="player-panel opponent-panel">
+              <div class="avatar avatar-dark">♚</div>
+              <div>
+                <span class="player-label">ADVERSÁRIO</span>
+                <strong id="opponent-name">Aguardando...</strong>
+              </div>
+              <span class="turn-indicator" id="opponent-turn"></span>
+            </aside>
+
+            <div class="board-column">
+              <div class="board-frame">
+                <div class="board" id="chessboard" aria-label="Tabuleiro de xadrez"></div>
+              </div>
+              <p class="board-message" id="board-message" role="alert"></p>
+            </div>
+
+            <aside class="player-panel self-panel">
+              <div class="avatar avatar-light">♔</div>
+              <div>
+                <span class="player-label">VOCÊ · <span id="player-color">BRANCAS</span></span>
+                <strong id="self-name">Jogador</strong>
+              </div>
+              <span class="turn-indicator" id="self-turn"></span>
+            </aside>
+
+            <div class="game-actions">
+              <p id="last-move">Nenhuma jogada realizada.</p>
+              <button class="danger-button" id="resign" type="button" disabled>
+                Desistir da partida
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>Computação Distribuída</span>
+        <span>Python · Tornado · WebSocket · JavaScript</span>
+      </footer>
+    </div>
+
+    <div class="modal hidden" id="promotion-modal" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <p class="eyebrow">PROMOÇÃO</p>
+        <h2>Escolha uma peça</h2>
+        <div class="promotion-options">
+          <button type="button" data-promotion="q" aria-label="Dama">♕</button>
+          <button type="button" data-promotion="r" aria-label="Torre">♖</button>
+          <button type="button" data-promotion="b" aria-label="Bispo">♗</button>
+          <button type="button" data-promotion="n" aria-label="Cavalo">♘</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

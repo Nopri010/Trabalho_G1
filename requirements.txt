@@ -1,0 +1,2 @@
+python-chess>=1.999,<2
+tornado>=6.4,<7

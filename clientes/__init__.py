@@ -1,0 +1,1 @@
+"""Clientes do ChessSocket."""
