@@ -4,3 +4,6 @@ __pycache__/
 .idea/
 .vscode/
 tmp/
+.pytest_cache/
+.ruff_cache/
+*.log

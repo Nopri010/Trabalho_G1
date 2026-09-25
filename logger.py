@@ -2,7 +2,7 @@ import logging
 
 
 def configurar_logger() -> None:
-    """Configura o log no formato usado nos exemplos da disciplina."""
+    """Configura o nível e o formato dos logs do servidor."""
     logging.basicConfig(
         level=logging.INFO,
         format="[%(asctime)s] [%(name)s] %(message)s",
