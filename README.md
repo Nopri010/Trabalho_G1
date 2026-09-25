@@ -5,21 +5,6 @@ Computação Distribuída. O servidor usa Python e Tornado, mantém o estado glo
 das partidas e valida todas as jogadas. O cliente usa HTML, CSS e JavaScript e
 troca mensagens com o servidor por WebSocket.
 
-## Escopo do MVP
-
-- criação e entrada em salas por código;
-- tabuleiro interativo e responsivo;
-- dois jogadores, um com cada cor;
-- alternância obrigatória de turnos;
-- validação autoritativa das jogadas no servidor;
-- capturas, roque, promoção e *en passant*;
-- detecção de xeque, xeque-mate e empates;
-- desistência e encerramento por desconexão;
-- retorno à mesma partida depois de atualizar a página.
-
-Cronômetro, espectadores, chat, histórico persistente, pedido de empate,
-revanche e ranking permanecem fora do MVP.
-
 ## Relação com o conteúdo da disciplina
 
 O projeto segue a base apresentada em aula:
